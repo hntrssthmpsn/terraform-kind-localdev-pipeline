@@ -17,14 +17,14 @@ Sealed Secrets: Integrates Bitnami's Sealed Secrets for managing Kubernetes secr
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.5.7 |
 | <a name="requirement_bcrypt"></a> [bcrypt](#requirement\_bcrypt) | 0.1.2 |
-| <a name="requirement_docker"></a> [docker](#requirement\_docker) | >=3.0.2 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm) | >= 2.11.0 |
-| <a name="requirement_kind"></a> [kind](#requirement\_kind) | >= 0.2.1 |
-| <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | 2.0.3 |
-| <a name="requirement_local"></a> [local](#requirement\_local) | 2.4.0 |
-| <a name="requirement_template"></a> [template](#requirement\_template) | >= 2.2.0 |
+| <a name="requirement_docker"></a> [docker](#requirement\_docker) | ~> 3.0.2 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.11.0 |
+| <a name="requirement_kind"></a> [kind](#requirement\_kind) | 0.2.1 |
+| <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | ~> 2.0.3 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | ~> 2.4.0 |
+| <a name="requirement_template"></a> [template](#requirement\_template) | ~> 2.2.0 |
 
 ## Providers
 
@@ -56,10 +56,10 @@ Sealed Secrets: Integrates Bitnami's Sealed Secrets for managing Kubernetes secr
 | [helm_release.gitea](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.ingress_nginx](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.sealed_secrets](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
-| [kind_cluster.default](https://registry.terraform.io/providers/tehcyx/kind/latest/docs/resources/cluster) | resource |
+| [kind_cluster.default](https://registry.terraform.io/providers/tehcyx/kind/0.2.1/docs/resources/cluster) | resource |
 | [kubernetes_namespace.cert_manager_namespace](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 | [kubernetes_secret.ca_issuer_secret](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret) | resource |
-| [local_file.cert_manager_ca_cert](https://registry.terraform.io/providers/hashicorp/local/2.4.0/docs/resources/file) | resource |
+| [local_file.cert_manager_ca_cert](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [tls_private_key.cert_manager_private_key](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
 | [tls_self_signed_cert.cert_manager_ca_cert](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/self_signed_cert) | resource |
 | [template_file.argocd_values](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
