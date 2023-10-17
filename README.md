@@ -4,13 +4,13 @@ This Terraform code automates the setup of a local Kubernetes development enviro
 
 ## Key Components
 
-KIND Cluster: Creates a local Kubernetes cluster using KIND.
-Docker Registry: Provisions a local Docker registry for storing Docker images.
-Ingress-Nginx: Sets up an Nginx ingress controller for routing traffic within the cluster.
-Cert-Manager: Manages TLS certificates and sets up a local CA (Certificate Authority).
-ArgoCD: Provisions an ArgoCD instance for GitOps-based deployments.
-Gitea: Sets up a Gitea instance for self-hosted Git services.
-Sealed Secrets: Integrates Bitnami's Sealed Secrets for managing Kubernetes secrets.
+* KIND Cluster: Creates a local Kubernetes cluster using KIND.
+* Docker Registry: Provisions a local Docker registry for storing Docker images.
+* Ingress-Nginx: Sets up an Nginx ingress controller for routing traffic within the cluster.
+* Cert-Manager: Manages TLS certificates and sets up a local CA (Certificate Authority).
+* ArgoCD: Provisions an ArgoCD instance for GitOps-based deployments.
+* Gitea: Sets up a Gitea instance for self-hosted Git services.
+* Sealed Secrets: Integrates Bitnami's Sealed Secrets for managing Kubernetes secrets.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
