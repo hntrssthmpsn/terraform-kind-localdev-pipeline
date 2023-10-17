@@ -13,19 +13,6 @@ This Terraform code automates the setup of a local Kubernetes development enviro
 * Sealed Secrets: Integrates Bitnami's Sealed Secrets for managing Kubernetes secrets.
 
 <!-- BEGIN_TF_DOCS -->
-## Requirements
-
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.5.7 |
-| <a name="requirement_bcrypt"></a> [bcrypt](#requirement\_bcrypt) | 0.1.2 |
-| <a name="requirement_docker"></a> [docker](#requirement\_docker) | ~> 3.0.2 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.11.0 |
-| <a name="requirement_kind"></a> [kind](#requirement\_kind) | 0.2.1 |
-| <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | ~> 2.0.3 |
-| <a name="requirement_local"></a> [local](#requirement\_local) | ~> 2.4.0 |
-| <a name="requirement_template"></a> [template](#requirement\_template) | ~> 2.2.0 |
-
 ## Providers
 
 | Name | Version |
