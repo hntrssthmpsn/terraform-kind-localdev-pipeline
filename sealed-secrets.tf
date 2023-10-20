@@ -1,12 +1,12 @@
 data "template_file" "sealed_secrets_values" {
-  count = var.sealed_secrets_enabled ? 1 : 0
+  count    = var.sealed_secrets_enabled ? 1 : 0
   template = <<EOF
 fullnameOverride: "sealed-secrets-controller"
 EOF
 }
 
 resource "helm_release" "sealed_secrets" {
-  count = var.sealed_secrets_enabled ? 1 : 0
+  count      = var.sealed_secrets_enabled ? 1 : 0
   name       = "sealed-secrets"
   repository = "https://bitnami-labs.github.io/sealed-secrets"
   chart      = "sealed-secrets"

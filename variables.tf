@@ -172,9 +172,9 @@ variable "ingress_nginx_https_host_port" {
 ###############################
 
 variable "sealed_secrets_enabled" {
-  type = string
+  type        = string
   description = "Deploy sealed secrets to the kind cluster?"
-  default = false
+  default     = false
 }
 
 variable "sealed_secrets_helm_version" {

@@ -7,7 +7,7 @@ output "cert_manager_ca_clusterissuer_generated_cert" {
 }
 
 output "cert_manager_ca_clusterissuer_generated_private_key" {
-  value = local.generate_cert ? tls_private_key.cert_manager_private_key.0.private_key_pem : ""
+  value     = local.generate_cert ? tls_private_key.cert_manager_private_key.0.private_key_pem : ""
   sensitive = true
 }
 
