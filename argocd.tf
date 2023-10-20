@@ -1,18 +1,16 @@
-locals {
-  argocd_host = "argocd.${var.kind_cluster_local_domain}"
-}
-
 resource "bcrypt_hash" "admin_pass" {
-  cleartext = var.argocd_admin_pass
+  count     = var.argocd_enabled ? 1 : 0
+  cleartext = var.argocd_admin_password
 }
 
 data "template_file" "argocd_values" {
+  count    = var.argocd_enabled ? 1 : 0
   template = <<EOF
 dex:
   enabled: false
 configs:
   secret:
-    argocdServerAdminPassword: ${bcrypt_hash.admin_pass.id}
+    argocdServerAdminPassword: ${bcrypt_hash.admin_pass.0.id}
   params:
     create: true
     "server.insecure": true
@@ -33,34 +31,18 @@ server:
       - secretName: argocd-cert
         hosts:
           - ${local.argocd_host}
-
-  additionalApplications:
-   - name: argocd-config
-     namespace: argocd
-     project: default
-     source:
-       repoURL: https://github.com/hntrssthmpsn/dummy-app.git
-       targetRevision: HEAD
-       path: examples/argocd/config
-       directory:
-         recurse: true
-     destination:
-       server: https://kubernetes.default.svc
-     syncPolicy:
-       automated:
-         prune: false
-         selfHeal: false
 EOF
 }
 
 resource "helm_release" "argocd" {
-  name = "argocd"
+  count = var.argocd_enabled ? 1 : 0
+  name  = "argocd"
 
   repository       = "https://argoproj.github.io/argo-helm"
   chart            = "argo-cd"
   namespace        = "argocd"
-  version          = "4.9.7"
+  version          = var.argocd_helm_chart_version
   create_namespace = true
 
-  values = ["${data.template_file.argocd_values.rendered}"]
+  values = ["${data.template_file.argocd_values.0.rendered}"]
 }

@@ -27,10 +27,22 @@ variable "kind_cluster_local_domain" {
 # ArgoCD Configuration
 #######################
 
-variable "argocd_admin_pass" {
+variable "argocd_enabled" {
+  type        = bool
+  description = "Deploy argocd to the kind cluster?"
+  default     = false
+}
+
+variable "argocd_admin_password" {
   type        = string
   description = "admin password for the cluster's argocd deployment"
-  default     = ""
+  default     = "kindclusterdefaultadminpass"
+}
+
+variable "argocd_helm_chart_version" {
+  type        = string
+  description = "The version of the argocd helm chart."
+  default     = "4.9.7"
 }
 
 ##############################
@@ -44,21 +56,25 @@ variable "cert_manager_namespace" {
 }
 
 variable "cert_manager_ca_clusterissuer_cert" {
-  type        = string
-  description = "The PEM-formatted certificate for cert-manager's CA ClusterIssuer. Leave empty to auto-generate"
-  default     = ""
+  type = object({
+    cert        = string
+    private_key = string
+  })
+  description = "The PEM-formatted certificate and private key for cert-manager's CA ClusterIssuer. If left blank, a self-signed cert with a 24 hour expiry will be used."
+  default = {
+    cert        = ""
+    private_key = ""
+  }
+  validation {
+    condition     = (var.cert_manager_ca_clusterissuer_cert.cert == "") == (var.cert_manager_ca_clusterissuer_cert.private_key == "")
+    error_message = "Please supply both cert_manager_ca_clusterissuer_cert.cert and cert_manager_ca_clusterissuer_cert.private_key or, to autocreate, supply neither. Supplying either without the other is not supported."
+  }
 }
 
 variable "cert_manager_ca_clusterissuer_email" {
   type        = string
   description = "The email address to use for the CA ClusterIssuer"
   default     = "admin@example.local"
-}
-
-variable "cert_manager_ca_clusterissuer_private_key" {
-  type        = string
-  description = "The private key for cert-manager's CA ClusterIssuer. Leave empty to auto-generate."
-  default     = ""
 }
 
 ###############################
@@ -87,16 +103,40 @@ variable "docker_registry_cluster_port" {
 # Gitea Configuration
 ######################
 
-variable "gitea_namespace" {
+variable "gitea_enabled" {
+  type        = bool
+  description = "Deploy gitea to the kind cluster?"
+  default     = false
+}
+
+variable "gitea_admin_email" {
   type        = string
-  description = "The namespace to use for gitea deployment"
-  default     = "gitea"
+  description = "The email address for gitea's admin user"
+  default     = "gitea@example.boguslocaldomain"
+}
+
+variable "gitea_admin_password" {
+  type        = string
+  description = "The password for gitea's admin user."
+  default     = "kindclusterdefaultadminpass"
+}
+
+variable "gitea_admin_username" {
+  type        = string
+  description = "The username for gitea's admin user."
+  default     = "gitea_admin"
 }
 
 variable "gitea_helm_version" {
   type        = string
   description = "Version of the gitea helm chart to use"
   default     = "9.5.0"
+}
+
+variable "gitea_namespace" {
+  type        = string
+  description = "The namespace to use for gitea deployment"
+  default     = "gitea"
 }
 
 ##############################
@@ -130,6 +170,12 @@ variable "ingress_nginx_https_host_port" {
 ###############################
 # Sealed Secrets Configuration
 ###############################
+
+variable "sealed_secrets_enabled" {
+  type        = string
+  description = "Deploy sealed secrets to the kind cluster?"
+  default     = false
+}
 
 variable "sealed_secrets_helm_version" {
   type        = string
