@@ -69,6 +69,36 @@ Note that the in-cluster gitea instance only supports git via https with user/pa
 | [template_file.ingress_nginx_values](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.sealed_secrets_values](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 
+### Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_argocd_admin_password"></a> [argocd\_admin\_password](#input\_argocd\_admin\_password) | admin password for the cluster's argocd deployment | `string` | `"kindclusterdefaultadminpass"` | no |
+| <a name="input_argocd_enabled"></a> [argocd\_enabled](#input\_argocd\_enabled) | Deploy argocd to the kind cluster? | `bool` | `false` | no |
+| <a name="input_argocd_helm_chart_version"></a> [argocd\_helm\_chart\_version](#input\_argocd\_helm\_chart\_version) | The version of the argocd helm chart. | `string` | `"4.9.7"` | no |
+| <a name="input_cert_manager_ca_clusterissuer_cert"></a> [cert\_manager\_ca\_clusterissuer\_cert](#input\_cert\_manager\_ca\_clusterissuer\_cert) | The PEM-formatted certificate and private key for cert-manager's CA ClusterIssuer. If left blank, a self-signed cert with a 24 hour expiry will be used. | <pre>object({<br>    cert        = string<br>    private_key = string<br>  })</pre> | <pre>{<br>  "cert": "",<br>  "private_key": ""<br>}</pre> | no |
+| <a name="input_cert_manager_ca_clusterissuer_email"></a> [cert\_manager\_ca\_clusterissuer\_email](#input\_cert\_manager\_ca\_clusterissuer\_email) | The email address to use for the CA ClusterIssuer | `string` | `"admin@example.local"` | no |
+| <a name="input_cert_manager_namespace"></a> [cert\_manager\_namespace](#input\_cert\_manager\_namespace) | The namespace for cert-manager deployment. | `string` | `"cert-manager"` | no |
+| <a name="input_docker_registry_address"></a> [docker\_registry\_address](#input\_docker\_registry\_address) | The address of the docker registry, useful if using a docker registry not managed here. | `string` | `"kind-registry"` | no |
+| <a name="input_docker_registry_cluster_port"></a> [docker\_registry\_cluster\_port](#input\_docker\_registry\_cluster\_port) | The port number for the docker registry on the kind cluster network. | `number` | `"5000"` | no |
+| <a name="input_docker_registry_host_port"></a> [docker\_registry\_host\_port](#input\_docker\_registry\_host\_port) | The port number for the docker registry on the host, external to the kind cluster. | `number` | `"5001"` | no |
+| <a name="input_gitea_admin_email"></a> [gitea\_admin\_email](#input\_gitea\_admin\_email) | The email address for gitea's admin user | `string` | `"gitea@example.boguslocaldomain"` | no |
+| <a name="input_gitea_admin_password"></a> [gitea\_admin\_password](#input\_gitea\_admin\_password) | The password for gitea's admin user. | `string` | `"kindclusterdefaultadminpass"` | no |
+| <a name="input_gitea_admin_username"></a> [gitea\_admin\_username](#input\_gitea\_admin\_username) | The username for gitea's admin user. | `string` | `"gitea_admin"` | no |
+| <a name="input_gitea_enabled"></a> [gitea\_enabled](#input\_gitea\_enabled) | Deploy gitea to the kind cluster? | `bool` | `false` | no |
+| <a name="input_gitea_helm_version"></a> [gitea\_helm\_version](#input\_gitea\_helm\_version) | Version of the gitea helm chart to use | `string` | `"9.5.0"` | no |
+| <a name="input_gitea_namespace"></a> [gitea\_namespace](#input\_gitea\_namespace) | The namespace to use for gitea deployment | `string` | `"gitea"` | no |
+| <a name="input_ingress_nginx_helm_version"></a> [ingress\_nginx\_helm\_version](#input\_ingress\_nginx\_helm\_version) | The ingress-nginx helm chart version. | `string` | `""` | no |
+| <a name="input_ingress_nginx_http_host_port"></a> [ingress\_nginx\_http\_host\_port](#input\_ingress\_nginx\_http\_host\_port) | The host port number to use for http ingress to services exposed via ingress-nginx | `number` | `"9080"` | no |
+| <a name="input_ingress_nginx_https_host_port"></a> [ingress\_nginx\_https\_host\_port](#input\_ingress\_nginx\_https\_host\_port) | The host port number to use for https ingress to services exposed via ingress-nginx | `number` | `"9443"` | no |
+| <a name="input_ingress_nginx_namespace"></a> [ingress\_nginx\_namespace](#input\_ingress\_nginx\_namespace) | The ingress-nginx namespace. | `string` | `"ingress-nginx"` | no |
+| <a name="input_kind_cluster_config_path"></a> [kind\_cluster\_config\_path](#input\_kind\_cluster\_config\_path) | The file to which the cluster's kubeconfig will be saved. | `string` | `"~/.kube/config"` | no |
+| <a name="input_kind_cluster_local_domain"></a> [kind\_cluster\_local\_domain](#input\_kind\_cluster\_local\_domain) | The local domain of the kind cluster. | `string` | `"localdev"` | no |
+| <a name="input_kind_cluster_name"></a> [kind\_cluster\_name](#input\_kind\_cluster\_name) | The name of the kind cluster. | `string` | `"butterflies-on-toast"` | no |
+| <a name="input_sealed_secrets_enabled"></a> [sealed\_secrets\_enabled](#input\_sealed\_secrets\_enabled) | Deploy sealed secrets to the kind cluster? | `string` | `false` | no |
+| <a name="input_sealed_secrets_helm_version"></a> [sealed\_secrets\_helm\_version](#input\_sealed\_secrets\_helm\_version) | The sealed secrets helm chart version | `string` | `""` | no |
+| <a name="input_sealed_secrets_namespace"></a> [sealed\_secrets\_namespace](#input\_sealed\_secrets\_namespace) | The sealed secrets namespace. | `string` | `"kube-system"` | no |
+
 ### Outputs
 
 | Name | Description |
