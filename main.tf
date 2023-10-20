@@ -1,8 +1,3 @@
-locals {
-  docker_cluster_endpoint = "${var.docker_registry_address}:${var.docker_registry_cluster_port}"
-  docker_host_endpoint    = "localhost:${var.docker_registry_host_port}"
-}
-
 resource "kind_cluster" "default" {
   name            = var.kind_cluster_name
   kubeconfig_path = pathexpand("${var.kind_cluster_config_path}")
