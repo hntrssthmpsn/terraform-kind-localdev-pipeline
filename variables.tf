@@ -81,10 +81,22 @@ variable "cert_manager_ca_clusterissuer_email" {
 # Docker Registry Configuration
 ###############################
 
+variable "docker_registry_enabled" {
+  type        = bool
+  description = "Deploy a local docker registry with docker?"
+  default     = false
+}
+
 variable "docker_registry_address" {
   type        = string
   description = "The address of the docker registry, useful if using a docker registry not managed here."
   default     = "kind-registry"
+}
+
+variable "docker_registry_cluster_port" {
+  type        = number
+  description = "The port number for the docker registry on the kind cluster network."
+  default     = "5000"
 }
 
 variable "docker_registry_host_port" {
@@ -93,10 +105,10 @@ variable "docker_registry_host_port" {
   default     = "5001"
 }
 
-variable "docker_registry_cluster_port" {
-  type        = number
-  description = "The port number for the docker registry on the kind cluster network."
-  default     = "5000"
+variable "docker_registry_image_tag" {
+  type        = string
+  description = "The image tag/version to use for our docker-registry"
+  default     = "2.8"
 }
 
 ######################
