@@ -1,8 +1,5 @@
-locals {
-  gitea_host = "gitea.${var.kind_cluster_local_domain}"
-}
-
 data "template_file" "gitea_values" {
+  count    = var.gitea_enabled ? 1 : 0
   template = <<EOF
 redis-cluster:
   enabled: false
@@ -15,6 +12,10 @@ persistence:
   enabled: false
 
 gitea:
+  admin:
+    username: ${var.gitea_admin_username}
+    password: ${var.gitea_admin_password}
+    email: ${var.gitea_admin_email}
   config:
     database:
       DB_TYPE: sqlite3
@@ -24,6 +25,10 @@ gitea:
       ADAPTER: memory
     queue:
       TYPE: level
+    repository:
+      DEFAULT_PUSH_CREATE_PRIVATE: false
+      ENABLE_PUSH_CREATE_USER: true
+      ENABLE_PUSH_CREATE_ORG: true
 
 ingress:
   enabled: true
@@ -45,6 +50,7 @@ EOF
 }
 
 resource "helm_release" "gitea" {
+  count      = var.gitea_enabled ? 1 : 0
   name       = "gitea"
   repository = "https://dl.gitea.com/charts/"
   chart      = "gitea"
@@ -53,7 +59,7 @@ resource "helm_release" "gitea" {
   namespace        = var.gitea_namespace
   create_namespace = true
 
-  values = ["${data.template_file.gitea_values.rendered}"]
+  values = ["${data.template_file.gitea_values.0.rendered}"]
 
   depends_on = [kind_cluster.default]
 }

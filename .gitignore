@@ -1,11 +1,8 @@
-# Local .kube directories
-**/.kube/*
+# Local .localdev directories
+**/.localdev/*
 
 # Local .terraform directories
 **/.terraform/*
-
-# Local .ssl directories
-**/.ssl/*
 
 # .tfstate files
 *.tfstate
