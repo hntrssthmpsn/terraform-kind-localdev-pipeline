@@ -12,6 +12,19 @@ This Terraform code automates the setup of a local Kubernetes development enviro
 * Gitea: Sets up a Gitea instance for self-hosted Git services.
 * Sealed Secrets: Integrates Bitnami's Sealed Secrets for managing Kubernetes secrets.
 
+## Requirements
+
+### Kind
+
+This module provisions a local kubernetes cluster with KIND (Kubernetes IN Docker). Installation instructions for Linux, Mac, and Windows can be found in the [KIND Quick Start documentation](https://kind.sigs.k8s.io/docs/user/quick-start/#installation).
+
+### Terraform
+
+You can install the terraform binary to run this module by following the [installation instructions from Hashicorp](https://developer.hashicorp.com/terraform/downloads).
+
+### Mkcert (optional)
+
+mkcert is a simple tool for creating and trusting local certificates. It's not required to run this module, but is useful for trusting local certs when working with https and ssl. Installation instructions are available from the [mkcert github repository's README](https://github.com/FiloSottile/mkcert#installation).
 
 ## Usage
 

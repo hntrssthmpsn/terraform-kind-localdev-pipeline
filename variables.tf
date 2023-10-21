@@ -8,7 +8,7 @@
 variable "kind_cluster_name" {
   type        = string
   description = "The name of the kind cluster."
-  default     = "butterflies-on-toast"
+  default     = ""
 }
 
 variable "kind_cluster_config_path" {

@@ -24,3 +24,23 @@ output "gitea_https_git_remote" {
   description = "The gitea credentials and address formatted for use in setting remotes for local git repositories."
 }
 
+output "kind_cluster_cluster_ca_certificate" {
+  value = kind_cluster.default.cluster_ca_certificate
+  description = "The cluster CA certificate for the kind cluster."
+}
+
+output "kind_cluster_client_certificate" {
+  value = kind_cluster.default.client_certificate
+  description = "The client certificate for the kind cluster."
+}
+
+output "kind_cluster_client_key" {
+  value = kind_cluster.default.client_key
+  description = "The client key for the kind cluster."
+}
+
+output "kind_cluster_endpoint" {
+  value = kind_cluster.default.endpoint
+  description = "Kubernetes api endpoint for the kind cluster."
+}
+
