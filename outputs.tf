@@ -3,6 +3,12 @@ output "argocd_address" {
   description = "The address of argocd, if deployed."
 }
 
+output "argocd_admin_password" {
+  value = var.argocd_enabled ? var.argocd_admin_password : ""
+  description = "The password for the argocd admin user."
+  sensitive = true
+}
+
 output "cert_manager_ca_clusterissuer_generated_cert" {
   value = local.generate_cert ? tls_self_signed_cert.cert_manager_ca_cert.0.cert_pem : ""
   description = "The ca certificate generated for cert-manager."
