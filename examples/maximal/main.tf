@@ -22,7 +22,7 @@ resource "local_file" "pipeline_env_file" {
 }
 
 resource "local_file" "argocd_aoa_manifest" {
-  content = <<~EOT
+  content = <<-EOT
     apiVersion: argoproj.io/v1alpha1
     kind: Application
     metadata:
