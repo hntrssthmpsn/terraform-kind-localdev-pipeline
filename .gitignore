@@ -1,5 +1,5 @@
 # Local .localdev directories
-**/.localdev/*
+**/.pipeline/*
 
 # Local .terraform directories
 **/.terraform/*
