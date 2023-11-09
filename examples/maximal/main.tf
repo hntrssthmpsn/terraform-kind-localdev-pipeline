@@ -17,6 +17,7 @@ resource "local_file" "pipeline_env_file" {
     ARGOCD_ADMIN_PASSWORD=${module.pipeline.argocd_admin_password}
     GITEA_ADDRESS=${module.pipeline.gitea_address}
     GITEA_HTTPS_GIT_REMOTE=${module.pipeline.gitea_https_git_remote}
+    GITEA_HTTP_GIT_REMOTE_INTERNAL=${module.pipeline.gitea_http_git_remote_internal}
   EOT
   filename = "${path.root}/.pipeline/pipeline.env"
 }
@@ -31,7 +32,8 @@ resource "local_file" "argocd_aoa_manifest" {
     spec:
       project: default
       source:
-        repoURL: ${module.pipeline.gitea_https_git_remote}/gitea_admin/terraform-kind-localdev-pipeline.git
+        repoURL: ${module.pipeline.gitea_http_git_remote_internal}/terraform-kind-localdev-pipeline.git
+
         targetRevision: HEAD
         path: examples/maximal/manifests/argocd
         directory:
@@ -39,6 +41,9 @@ resource "local_file" "argocd_aoa_manifest" {
       destination:
         server: https://kubernetes.default.svc
         namespace: argocd
+      syncPolicy:
+        automated:
+          selfHeal: true
   EOT
   filename = "${path.root}/.pipeline/argocd-apps.yaml"
 } 

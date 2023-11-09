@@ -24,3 +24,7 @@ output "gitea_https_git_remote" {
   description = "The gitea credentials and address formatted for use in setting remotes for local git repositories."
 }
 
+output "gitea_http_git_remote_internal" {
+  value = module.pipeline.gitea_http_git_remote_internal
+  description = "The gitea credentials and address formatted for use in setting remotes for local-to-the-cluster git repositories"
+}

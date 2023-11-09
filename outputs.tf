@@ -26,8 +26,13 @@ output "gitea_address" {
 }
 
 output "gitea_https_git_remote" {
-  value = var.gitea_enabled ? "https://${var.gitea_admin_username}:${var.gitea_admin_password}@${local.gitea_host}:${var.ingress_nginx_https_host_port}" : ""
+  value = var.gitea_enabled ? "https://${var.gitea_admin_username}:${var.gitea_admin_password}@${local.gitea_host}:${var.ingress_nginx_https_host_port}/${var.gitea_admin_username}" : ""
   description = "The gitea credentials and address formatted for use in setting remotes for local git repositories."
+}
+
+output "gitea_http_git_remote_internal" {
+  value = var.gitea_enabled ? "http://${var.gitea_admin_username}:${var.gitea_admin_password}@gitea-http.${var.gitea_namespace}.svc.cluster.local:3000/${var.gitea_admin_username}" : ""
+  description = "The gitea credentials and address formatted for use in setting remotes for local-to-the-cluster git repositories"
 }
 
 output "kind_cluster_cluster_ca_certificate" {

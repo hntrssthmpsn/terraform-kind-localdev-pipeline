@@ -106,19 +106,35 @@ When we log into ArgoCD, we'll find it empty and waiting for its first app, so l
 
 ### Deploy an application with ArgoCD
 
-For a quick and dirty test, we can deploy an ArgoCD example app via either of the mechanisms from the [ArgoCD declarative setup documentation](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/). For this walkthrough, let's set up a local repository in Gittea and configure ArgoCD to deploy from it.
+For convenience, we have created an app-of-apps pattern ArgoCD Application manifest using a local_file resource in our terraform. You can view it at .pipeline/argocd-apps.yaml. Before we can deploy it though, we should create the repository it'll watch for new Applications. We can do this, for the sake of this walkthrough, by pushing our local copy of this repository to gitea. The app-of-apps Application manifest we created with terraform will deploy Applications in ./manifests/argocd, which we've pre-populated with an Application manifests that deploys the guestbook frontend ArgoCD Demo app. 
 
-For convenience, we can just push this repository to Gittea. There's a manifest for an ArgoCD app 
-
-
+To push to our local gitea instance, we'll need to add it as a git remote on this repository. For convenience, we've included a stub we can use to define the remote, including credentials, in our environment file at `.pipeline/pipeline.env`. 
 ```
-echo $GITEA_ADDRESS
+echo $GITEA_HTTPS_GIT_REMOTE
 
 # Example output
-#https://gitea.maximal-default-cluster.localdev:9443
+# https://gitea_admin:kindclusterdefaultadminpass@gitea.maximal-default-cluster.localdev:9443/gitea_admin
+
+git remote add gitea $GITEA_HTTPS_GIT_REMOTE/terraform-kind-localdev-pipeline.git
+
+# Check our remotes
+git remote -v
+
+# Example output
+# gitea   https://gitea_admin:kindclusterdefaultadminpass@gitea.maximal-default-cluster.localdev:9443/gitea_admin/terraform-kind-localdev-pipeline.git (fetch)
+# gitea   https://gitea_admin:kindclusterdefaultadminpass@gitea.maximal-default-cluster.localdev:9443/gitea_admin/terraform-kind-localdev-pipeline.git (push)
+# origin  git@github.com:beautiful-localdev/terraform-kind-localdev-pipeline.git (fetch)
+# origin  git@github.com:beautiful-localdev/terraform-kind-localdev-pipeline.git (push)
+
+# And let's push!
+git push gitea main
 ```
 
+With our repository in place, we can now apply our bootstrapper app with the manifest at .pipeline/argocd-apps.yaml.
 
-
+```
+kubectl apply -f ./.pipeline/argocd-apps.yaml
+```
+We should now see our guestbook Application synced or syncing in the ArgoCD web portal, and we should find the guestbook resources in our newly greated guestbook namespace.
 
 
