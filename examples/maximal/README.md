@@ -137,4 +137,24 @@ kubectl apply -f ./.pipeline/argocd-apps.yaml
 ```
 We should now see our guestbook Application synced or syncing in the ArgoCD web portal, and we should find the guestbook resources in our newly greated guestbook namespace.
 
+### Use sealed-secrets
 
+We can test out sealed-secrets by following the [usage instructions from the sealed-secrets README](https://github.com/bitnami-labs/sealed-secrets#usage), which should work out of the box as written here.
+
+```
+# Create a json/yaml-encoded Secret somehow:
+# (note use of `--dry-run` - this is just a local file!)
+echo -n bar | kubectl create secret generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o json >mysecret.json
+
+# This is the important bit:
+kubeseal -f mysecret.json -w mysealedsecret.json
+
+# At this point mysealedsecret.json is safe to upload to Github,
+# post on Twitter, etc.
+
+# Eventually:
+kubectl create -f mysealedsecret.json
+
+# Profit!
+kubectl get secret mysecret
+```
