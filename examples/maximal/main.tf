@@ -1,12 +1,12 @@
 module "pipeline" {
-  source = "../../"
-  kind_cluster_name = "maximal-default-cluster"
-  argocd_enabled = true
+  source                  = "../../"
+  kind_cluster_name       = "maximal-default-cluster"
+  argocd_enabled          = true
   docker_registry_enabled = true
-  gitea_enabled = true
-  sealed_secrets_enabled = true
-  cert_manager_ca_clusterissuer_cert = { 
-    cert = var.ca_cert
+  gitea_enabled           = true
+  sealed_secrets_enabled  = true
+  cert_manager_ca_clusterissuer_cert = {
+    cert        = var.ca_cert
     private_key = var.ca_key
   }
 }
@@ -23,7 +23,7 @@ resource "local_file" "pipeline_env_file" {
 }
 
 resource "local_file" "argocd_aoa_manifest" {
-  content = <<-EOT
+  content  = <<-EOT
     apiVersion: argoproj.io/v1alpha1
     kind: Application
     metadata:
@@ -46,5 +46,5 @@ resource "local_file" "argocd_aoa_manifest" {
           selfHeal: true
   EOT
   filename = "${path.root}/.pipeline/argocd-apps.yaml"
-} 
+}
 
