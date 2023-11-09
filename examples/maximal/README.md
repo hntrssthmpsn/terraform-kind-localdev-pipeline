@@ -1,6 +1,6 @@
 # Maximal Example
 
-This example provisions a KIND cluster and deployws:
+This example provisions a KIND cluster and deploys:
 
 * cert-manager
 * ingress-nginx
@@ -71,7 +71,7 @@ kubectl get node
 kubectl get all -A
 ```
 
-## Explore our services with a demo app
+## Explore our deployed services
 
 ### Set up our environment
 

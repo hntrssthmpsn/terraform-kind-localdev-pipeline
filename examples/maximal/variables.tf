@@ -5,9 +5,9 @@ variable "ca_cert" {
 }
 
 variable "ca_key" {
-  type = string
+  type        = string
   description = "Add the private key for a trusted local CA cert here, or leave blank to autogenerate a key. Note that key and cert should be supplied together."
-  default = ""
+  default     = ""
 }
 
 variable "kind_cluster_local_domain" {

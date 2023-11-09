@@ -1,4 +1,4 @@
 module "pipeline" {
-  source = "../../"
+  source            = "../../"
   kind_cluster_name = "minimal-default-cluster"
 }
