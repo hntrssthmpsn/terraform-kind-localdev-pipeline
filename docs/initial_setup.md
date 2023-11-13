@@ -1,6 +1,6 @@
 # Initial Setup Steps
 
-This document describes the initial setup of a localdev environment for use with our pipeline module. None of the steps in this document are required to run the module, but the functionality they provide is required to make full use of the module as shown in our maximal example.
+This document describes the initial setup of a localdev environment for use with our pipeline module. None of the steps in this document are required to run the module, but the functionality they provide is required to make full use of the module as shown in our [maximal example](https://github.com/beautiful-localdev/terraform-kind-localdev-pipeline/tree/main/examples/maximal).
 
 ## Recommended Tools
 
@@ -41,7 +41,7 @@ Enter your password when prompted (and prompted again). Output should look like 
 # Sudo password:
 # The local CA is now installed in the system trust store! ⚡️
 ```
-This will create `rootCA-key.pem' and `rootCA.pem` at `~/.mkcert/localdev`. You can copy their contents into `ca_cert` and `ca_key` variables in a terraform.tfvars file to set the cert and private key variables for the CA ClusterIssuer, but for the sake of this ephemeral example let's just use the `-var` argument to terraform to set them at the CLI.
+This will create `rootCA-key.pem` and `rootCA.pem` at `~/.mkcert/localdev`. See our [maximal example](https://github.com/beautiful-localdev/terraform-kind-localdev-pipeline/tree/main/examples/maximal) for an example of using the local trusted CA we've created here to automatically provide locally trusted certs with cert-manager.
 
 ## Component-specific requirements
 
