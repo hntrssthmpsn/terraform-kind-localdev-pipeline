@@ -13,49 +13,13 @@ For convenience, we also write useful items like credentials to a local env file
 
 ## One-time Setup Steps
 
-### Set up minimal DNS for a custom localdev domain
-It's often very useful to have domains other than localhost resolve to 127.0.0.1 while we're working with our cluster. This is optional, a domain can be provided by another mechanism and set with the kind_cluster_local_domain variable in terraform. For use cases where local name resolution beyond localhost isn't required, we can ignore the kind_cluster_local_domain variable and use kubectl to port-forward as necessary to reach resources in the cluster.
-
-Here we'll set up a "stub" domain `localdev` with dnsmasq and point it to 127.0.0.1. This will allow us to use subdomains of `localdev` as ingress hosts for services in our cluster without needing to do anything tedious like manage individual /etc/hosts entries. Because the default value of `kind_cluster_local_domain` is `localdev` we will not need to take any further action to make our friendly domains work automatically.
-
-The instructions below work on MacOS using Homebrew.
-
-```
-brew install dnsmasq
-mkdir -p $(brew --prefix)/etc/
-echo 'address=/.localdev/127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf
-sudo brew services start dnsmasq
-
-# Test
-dig arbitrary-subdomain.localdev @127.0.0.1
-```
-
-### Set up a trusted local CA 
-
-The terraform-kind-localdev-pipeline module includes a CA ClusterIssuer for cert-manager to facilitate smooth interactions between localhost and services running within the cluster using trusted self-signed certificates. If we do not supply a certificate and key, they will be automatically generated for use by cert-manager. Any CA Certificate trusted by localhost can be supplied, or if they are omitted the generated certificate can then be trusted on localhost by whatever mechanism is preferred. In this example, we will use [mkcert](https://github.com/FiloSottile/mkcert) to easily generate and trust a local CA certificate. 
-
-```
-mkdir -p ~/.mkcert/localdev
-CAROOT=~/.mkcert/localdev mkcert --install
-```
-Enter your password when prompted (and prompted again). Output should look like this:
-```
-# Example output
-# Created a new local CA 💥
-# Sudo password:
-# The local CA is now installed in the system trust store! ⚡️
-
-```
-This will create `rootCA-key.pem' and `rootCA.pem` at `~/.mkcert/localdev`. You can copy their contents into `ca_cert` and `ca_key` variables in a terraform.tfvars file to set the cert and private key variables for the CA ClusterIssuer, but for the sake of this ephemeral example let's just use the `-var` argument to terraform to set them at the CLI.
+If you don't already have a locally trusted CA certificate and DNS for a local development domain set up, follow the instructions in the initial setup document.
 
 ## Apply our terraform
 
-If you are using your own CA cert and key rather than the ones we generated with mkcert above, update the paths in our terraform apply var arguments below to reflect the paths to your cert and key. If you'd prefer not to trust the CA locally, you can omit both var arguments to generate a CA cert and key with terraform. Note that unless the generated cert and key are then installed into the local trust store(s), portions of this example may not perform as expected.
+If you are using your own CA cert and key and they are configured in a different location than the default used in the initial setup document, update the paths in our terraform apply var arguments below to reflect the paths to your cert and key. If you'd prefer not to trust the CA locally, you can omit both var arguments to generate a CA cert and key with terraform. Note that unless the generated cert and key are then installed into the local trust store(s), portions of this example may not perform as expected.
 
 ```
-# Start in this directory
-cd examples/maximal
-
 # Run terraform apply and supply the contents of our mkcert CA certificate and key as arguments.
 terraform init
 terraform apply -var "ca_cert=$(cat ~/.mkcert/localdev/rootCA.pem)" -var "ca_key=$(cat ~/.mkcert/localdev/rootCA-key.pem)"

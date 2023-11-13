@@ -22,9 +22,9 @@ This module provisions a local kubernetes cluster with KIND (Kubernetes IN Docke
 
 You can install the terraform binary to run this module by following the [installation instructions from Hashicorp](https://developer.hashicorp.com/terraform/downloads).
 
-### Mkcert (optional)
+### Additional recommended tools
 
-mkcert is a simple tool for creating and trusting local certificates. It's not required to run this module, but is useful for trusting local certs when working with https and ssl. Installation instructions are available from the [mkcert github repository's README](https://github.com/FiloSottile/mkcert#installation).
+In addition to the basic requirements listed above, it's useful to have certain functionality expected in a remote deployment environment set up locally. Additionally, some of the optional components that can be deployed with this module, like sealed-secrets, may have additional requirements. Initial setup of optional or component-specific external tools is described in our initial setup document.
 
 ## Usage
 
