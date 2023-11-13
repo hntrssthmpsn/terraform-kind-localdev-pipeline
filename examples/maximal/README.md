@@ -13,7 +13,7 @@ For convenience, we also write useful items like credentials to a local env file
 
 ## One-time Setup Steps
 
-If you don't already have a locally trusted CA certificate and DNS for a local development domain set up, follow the instructions in the initial setup document.
+This example requires dns configuration for a local development domain, a trusted local CA certificate, and kubeseal, and assumes they're configured as described in the [initial setup document](https://github.com/beautiful-localdev/terraform-kind-localdev-pipeline/blob/main/docs/initial_setup.md).
 
 ## Apply our terraform
 

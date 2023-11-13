@@ -16,7 +16,7 @@ This Terraform module automates the setup of a local Kubernetes development envi
 
 ### Kind
 
-This module provisions a local kubernetes cluster with KIND (Kubernetes IN Docker). Installation instructions for Linux, Mac, and Windows can be found in the [KIND Quick Start documentation](https://kind.sigs.k8s.io/docs/user/quick-start/#installation).
+This module provisions a local kubernetes cluster with KIND (Kubernetes IN Docker). Installation instructions can be found in the [KIND Quick Start documentation](https://kind.sigs.k8s.io/docs/user/quick-start/#installation).
 
 ### Terraform
 
@@ -24,7 +24,7 @@ You can install the terraform binary to run this module by following the [instal
 
 ### Additional recommended tools
 
-In addition to the basic requirements listed above, it's useful to have certain functionality expected in a remote deployment environment set up locally. Additionally, some of the optional components that can be deployed with this module, like sealed-secrets, may have additional requirements. Initial setup of optional or component-specific external tools is described in our initial setup document.
+In addition to the basic requirements listed above, it's useful to have certain functionality expected in a remote deployment environment set up locally. Additionally, some of the optional components that can be deployed with this module, like sealed-secrets, require configuration of a client. Initial setup of optional or component-specific external tools is described in the [initial setup document](https://github.com/beautiful-localdev/terraform-kind-localdev-pipeline/blob/main/docs/initial_setup.md).
 
 ## Usage
 
