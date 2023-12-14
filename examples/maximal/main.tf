@@ -1,6 +1,6 @@
 module "pipeline" {
   source                  = "../../"
-  kind_cluster_name       = "maximal-default-cluster"
+  kind_cluster_name       = "maximal-example"
   argocd_enabled          = true
   docker_registry_enabled = true
   gitea_enabled           = true
@@ -46,5 +46,22 @@ resource "local_file" "argocd_aoa_manifest" {
           selfHeal: true
   EOT
   filename = "${path.root}/.pipeline/argocd-apps.yaml"
+}
+
+check "health_check" {
+  data "http" "gitea_https" {
+    url = module.pipeline.gitea_https_git_remote
+    ca_cert_pem = var.ca_cert
+    depends_on = [module.pipeline]
+    retry {
+      min_delay_ms = 500
+      attempts = 3
+    }
+  }
+
+  assert {
+    condition = data.http.gitea_https.status_code == 200
+    error_message = "${data.http.gitea_https.url} returned an unhealthy status code"
+  }
 }
 
