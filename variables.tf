@@ -7,8 +7,12 @@
 
 variable "kind_cluster_name" {
   type        = string
-  description = "The name of the kind cluster."
+  description = "The name of the kind cluster. Supports lower case letters and hyphens."
   default     = ""
+  validation {
+    condition = (var.kind_cluster_name == "") || can(regex("^[a-z\\-]+$", var.kind_cluster_name))
+    error_message = "${var.kind_cluster_name} includes unsupported characters. The kind cluster name should include only lower-case letters and hyphens."
+  }
 }
 
 variable "kind_cluster_config_path" {
