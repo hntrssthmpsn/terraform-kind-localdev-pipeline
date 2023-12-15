@@ -10,7 +10,7 @@ variable "kind_cluster_name" {
   description = "The name of the kind cluster. Supports lower case letters and hyphens."
   default     = ""
   validation {
-    condition = (var.kind_cluster_name == "") || can(regex("^[a-z\\-]+$", var.kind_cluster_name))
+    condition     = (var.kind_cluster_name == "") || can(regex("^[a-z\\-]+$", var.kind_cluster_name))
     error_message = "${var.kind_cluster_name} includes unsupported characters. The kind cluster name should include only lower-case letters and hyphens."
   }
 }
@@ -28,9 +28,9 @@ variable "kind_cluster_local_domain" {
 }
 
 variable "kind_cluster_persistence_path" {
-  type = string
+  type        = string
   description = "The path to use for local persistence. Mounted to kind worker nodes."
-  default = ""
+  default     = ""
 }
 
 #######################

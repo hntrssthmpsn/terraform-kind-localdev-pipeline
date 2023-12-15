@@ -33,7 +33,7 @@ See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-loca
 ## Terraform Documentation
 
 <!-- BEGIN_TF_DOCS -->
-## Providers
+### Providers
 
 | Name | Version |
 |------|---------|
@@ -45,13 +45,13 @@ See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-loca
 | <a name="provider_template"></a> [template](#provider\_template) | 2.2.0 |
 | <a name="provider_tls"></a> [tls](#provider\_tls) | 4.0.4 |
 
-## Modules
+### Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_cert_manager"></a> [cert\_manager](#module\_cert\_manager) | terraform-iaac/cert-manager/kubernetes | n/a |
 
-## Resources
+### Resources
 
 | Name | Type |
 |------|------|
@@ -73,7 +73,7 @@ See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-loca
 | [template_file.ingress_nginx_values](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.sealed_secrets_values](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 
-## Inputs
+### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
@@ -100,12 +100,13 @@ See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-loca
 | <a name="input_ingress_nginx_namespace"></a> [ingress\_nginx\_namespace](#input\_ingress\_nginx\_namespace) | The ingress-nginx namespace. | `string` | `"ingress-nginx"` | no |
 | <a name="input_kind_cluster_config_path"></a> [kind\_cluster\_config\_path](#input\_kind\_cluster\_config\_path) | The file to which the cluster's kubeconfig will be saved. | `string` | `"~/.kube/config"` | no |
 | <a name="input_kind_cluster_local_domain"></a> [kind\_cluster\_local\_domain](#input\_kind\_cluster\_local\_domain) | The local domain of the kind cluster. | `string` | `"localdev"` | no |
-| <a name="input_kind_cluster_name"></a> [kind\_cluster\_name](#input\_kind\_cluster\_name) | The name of the kind cluster. | `string` | `""` | no |
+| <a name="input_kind_cluster_name"></a> [kind\_cluster\_name](#input\_kind\_cluster\_name) | The name of the kind cluster. Supports lower case letters and hyphens. | `string` | `""` | no |
+| <a name="input_kind_cluster_persistence_path"></a> [kind\_cluster\_persistence\_path](#input\_kind\_cluster\_persistence\_path) | The path to use for local persistence. Mounted to kind worker nodes. | `string` | `""` | no |
 | <a name="input_sealed_secrets_enabled"></a> [sealed\_secrets\_enabled](#input\_sealed\_secrets\_enabled) | Deploy sealed secrets to the kind cluster? | `string` | `false` | no |
 | <a name="input_sealed_secrets_helm_version"></a> [sealed\_secrets\_helm\_version](#input\_sealed\_secrets\_helm\_version) | The sealed secrets helm chart version | `string` | `""` | no |
 | <a name="input_sealed_secrets_namespace"></a> [sealed\_secrets\_namespace](#input\_sealed\_secrets\_namespace) | The sealed secrets namespace. | `string` | `"kube-system"` | no |
 
-## Outputs
+### Outputs
 
 | Name | Description |
 |------|-------------|
