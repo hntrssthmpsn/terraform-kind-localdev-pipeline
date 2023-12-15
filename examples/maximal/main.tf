@@ -1,11 +1,11 @@
 module "pipeline" {
-  source                  = "../../"
-  kind_cluster_name       = "maximal-example"
+  source                        = "../../"
+  kind_cluster_name             = "maximal-example"
   kind_cluster_persistence_path = var.kind_cluster_persistence_path
-  argocd_enabled          = true
-  docker_registry_enabled = true
-  gitea_enabled           = true
-  sealed_secrets_enabled  = true
+  argocd_enabled                = true
+  docker_registry_enabled       = true
+  gitea_enabled                 = true
+  sealed_secrets_enabled        = true
   cert_manager_ca_clusterissuer_cert = {
     cert        = var.ca_cert
     private_key = var.ca_key
@@ -51,17 +51,17 @@ resource "local_file" "argocd_aoa_manifest" {
 
 check "health_check" {
   data "http" "gitea_https" {
-    url = module.pipeline.gitea_https_git_remote
+    url         = module.pipeline.gitea_https_git_remote
     ca_cert_pem = var.ca_cert
-    depends_on = [module.pipeline]
+    depends_on  = [module.pipeline]
     retry {
       min_delay_ms = 500
-      attempts = 3
+      attempts     = 3
     }
   }
 
   assert {
-    condition = data.http.gitea_https.status_code == 200
+    condition     = data.http.gitea_https.status_code == 200
     error_message = "${data.http.gitea_https.url} returned an unhealthy status code"
   }
 }
