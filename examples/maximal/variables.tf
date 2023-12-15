@@ -15,3 +15,9 @@ variable "kind_cluster_local_domain" {
   description = "The local domain of the kind cluster."
   default     = "localdev"
 }
+
+variable "kind_cluster_persistence_path" {
+  type = string
+  description = "Override the default path used for local persistence. Mounted to kind worker nodes."
+  default = ""
+}

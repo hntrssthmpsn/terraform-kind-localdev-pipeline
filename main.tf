@@ -37,6 +37,12 @@ resource "kind_cluster" "default" {
         container_port = 443
         host_port      = var.ingress_nginx_https_host_port
       }
+      
+      # Mount local directory for persistent storage
+      extra_mounts {
+        host_path = local.kind_persistence_path
+        container_path = "/var/local-path-provisioner"
+      }
     }
   }
 }
