@@ -27,6 +27,12 @@ variable "kind_cluster_local_domain" {
   default     = "localdev"
 }
 
+variable "kind_cluster_persistence_path" {
+  type = string
+  description = "The path to use for local persistence. Mounted to kind worker nodes."
+  default = ""
+}
+
 #######################
 # ArgoCD Configuration
 #######################

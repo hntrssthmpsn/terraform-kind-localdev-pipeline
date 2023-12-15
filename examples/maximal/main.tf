@@ -1,6 +1,7 @@
 module "pipeline" {
   source                  = "../../"
   kind_cluster_name       = "maximal-example"
+  kind_cluster_persistence_path = var.kind_cluster_persistence_path
   argocd_enabled          = true
   docker_registry_enabled = true
   gitea_enabled           = true
