@@ -1,5 +1,5 @@
 output "argocd_address" {
-  value       = var.argocd_enabled ? "https://${local.argocd_host}:${var.ingress_nginx_https_host_port}" : ""
+  value       = var.argocd_enabled ? "https://${local.argocd_host}:${var.ingress_https_host_port}" : ""
   description = "The address of argocd, if deployed."
 }
 
@@ -21,12 +21,12 @@ output "cert_manager_ca_clusterissuer_generated_private_key" {
 }
 
 output "gitea_address" {
-  value       = var.gitea_enabled ? "https://${local.gitea_host}:${var.ingress_nginx_https_host_port}" : ""
+  value       = var.gitea_enabled ? "https://${local.gitea_host}:${var.ingress_https_host_port}" : ""
   description = "The address of gitea, if deployed."
 }
 
 output "gitea_https_git_remote" {
-  value       = var.gitea_enabled ? "https://${var.gitea_admin_username}:${var.gitea_admin_password}@${local.gitea_host}:${var.ingress_nginx_https_host_port}/${var.gitea_admin_username}" : ""
+  value       = var.gitea_enabled ? "https://${var.gitea_admin_username}:${var.gitea_admin_password}@${local.gitea_host}:${var.ingress_https_host_port}/${var.gitea_admin_username}" : ""
   description = "The gitea credentials and address formatted for use in setting remotes for local git repositories."
 }
 

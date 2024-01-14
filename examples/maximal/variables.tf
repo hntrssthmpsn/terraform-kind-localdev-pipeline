@@ -21,3 +21,4 @@ variable "kind_cluster_persistence_path" {
   description = "Override the default path used for local persistence. Mounted to kind worker nodes."
   default     = ""
 }
+
