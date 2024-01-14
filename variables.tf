@@ -1,6 +1,3 @@
-# variables.tf
-
-
 #############################
 # Kind Cluster Configuration 
 #############################
@@ -211,13 +208,13 @@ variable "ingress_https_host_port" {
   default     = "9443"
 }
 
-variable "ingress_http_cluster_container_port" {
+variable "ingress_http_node_port" {
   type        = number
-  description = "The cluster container port number to use for http ingress to exposed services"
+  description = "The node port number to use for http ingress to exposed services"
   default     = "80"
 }
 
-variable "ingress_https_cluster_container_port" { 
+variable "ingress_https_node_port" { 
   type        = number
   description = "The host port number to use for https ingress to exposed services"
   default     = "443"

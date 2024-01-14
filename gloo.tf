@@ -22,8 +22,8 @@ gatewayProxies:
       type: NodePort
       httpPort: 31500
       httpsPort: 32500
-      httpNodePort: 31500
-      httpsNodePort: 32500
+      httpNodePort: ${var.ingress_http_node_port}
+      httpsNodePort: ${var.ingress_https_node_port}
     kind:
       deployment:
         replicas: 1

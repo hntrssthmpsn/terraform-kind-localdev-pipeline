@@ -28,13 +28,13 @@ resource "kind_cluster" "default" {
 
       # http port mappings 
       extra_port_mappings {
-        container_port = var.ingress_http_cluster_container_port 
+        container_port = var.ingress_http_node_port 
         host_port      = var.ingress_http_host_port
       }
 
       # https port mappings 
       extra_port_mappings {
-        container_port = var.ingress_https_cluster_container_port
+        container_port = var.ingress_https_node_port
         host_port      = var.ingress_https_host_port
       }
 
