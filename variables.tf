@@ -181,7 +181,7 @@ variable "gloo_helm_chart_version" {
 variable "ingress_nginx_enabled" {
   type        = bool
   description = "Deploy ingress-nginx to the kind cluster?"
-  default     = false
+  default     = true
 }
 
 variable "ingress_nginx_helm_version" {

@@ -6,7 +6,6 @@ module "pipeline" {
   docker_registry_enabled       = true
   gitea_enabled                 = true
   sealed_secrets_enabled        = true
-  ingress_nginx_enabled = true
   cert_manager_ca_clusterissuer_cert = {
     cert        = var.ca_cert
     private_key = var.ca_key
