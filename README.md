@@ -60,6 +60,7 @@ See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-loca
 | [docker_image.kind_registry](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/image) | resource |
 | [helm_release.argocd](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.gitea](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.gloo](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.ingress_nginx](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.sealed_secrets](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [kind_cluster.default](https://registry.terraform.io/providers/tehcyx/kind/0.2.1/docs/resources/cluster) | resource |
@@ -70,6 +71,7 @@ See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-loca
 | [template_file.argocd_values](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.cluster_issuer_yaml](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.gitea_values](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
+| [template_file.gloo_values](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.ingress_nginx_values](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.sealed_secrets_values](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 
@@ -94,9 +96,14 @@ See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-loca
 | <a name="input_gitea_enabled"></a> [gitea\_enabled](#input\_gitea\_enabled) | Deploy gitea to the kind cluster? | `bool` | `false` | no |
 | <a name="input_gitea_helm_version"></a> [gitea\_helm\_version](#input\_gitea\_helm\_version) | Version of the gitea helm chart to use | `string` | `"9.5.0"` | no |
 | <a name="input_gitea_namespace"></a> [gitea\_namespace](#input\_gitea\_namespace) | The namespace to use for gitea deployment | `string` | `"gitea"` | no |
+| <a name="input_gloo_enabled"></a> [gloo\_enabled](#input\_gloo\_enabled) | Deploy gloo to the kind cluster? | `bool` | `false` | no |
+| <a name="input_gloo_helm_chart_version"></a> [gloo\_helm\_chart\_version](#input\_gloo\_helm\_chart\_version) | The version of the gloo helm chart to use for gloo installation. | `string` | `"1.15.18"` | no |
+| <a name="input_ingress_http_host_port"></a> [ingress\_http\_host\_port](#input\_ingress\_http\_host\_port) | The host port number to use for http ingress to services exposed via ingress-nginx | `number` | `"9080"` | no |
+| <a name="input_ingress_http_node_port"></a> [ingress\_http\_node\_port](#input\_ingress\_http\_node\_port) | The node port number to use for http ingress to exposed services | `number` | `"80"` | no |
+| <a name="input_ingress_https_host_port"></a> [ingress\_https\_host\_port](#input\_ingress\_https\_host\_port) | The host port number to use for https ingress to services exposed via ingress-nginx | `number` | `"9443"` | no |
+| <a name="input_ingress_https_node_port"></a> [ingress\_https\_node\_port](#input\_ingress\_https\_node\_port) | The host port number to use for https ingress to exposed services | `number` | `"443"` | no |
+| <a name="input_ingress_nginx_enabled"></a> [ingress\_nginx\_enabled](#input\_ingress\_nginx\_enabled) | Deploy ingress-nginx to the kind cluster? | `bool` | `false` | no |
 | <a name="input_ingress_nginx_helm_version"></a> [ingress\_nginx\_helm\_version](#input\_ingress\_nginx\_helm\_version) | The ingress-nginx helm chart version. | `string` | `""` | no |
-| <a name="input_ingress_nginx_http_host_port"></a> [ingress\_nginx\_http\_host\_port](#input\_ingress\_nginx\_http\_host\_port) | The host port number to use for http ingress to services exposed via ingress-nginx | `number` | `"9080"` | no |
-| <a name="input_ingress_nginx_https_host_port"></a> [ingress\_nginx\_https\_host\_port](#input\_ingress\_nginx\_https\_host\_port) | The host port number to use for https ingress to services exposed via ingress-nginx | `number` | `"9443"` | no |
 | <a name="input_ingress_nginx_namespace"></a> [ingress\_nginx\_namespace](#input\_ingress\_nginx\_namespace) | The ingress-nginx namespace. | `string` | `"ingress-nginx"` | no |
 | <a name="input_kind_cluster_config_path"></a> [kind\_cluster\_config\_path](#input\_kind\_cluster\_config\_path) | The file to which the cluster's kubeconfig will be saved. | `string` | `"~/.kube/config"` | no |
 | <a name="input_kind_cluster_local_domain"></a> [kind\_cluster\_local\_domain](#input\_kind\_cluster\_local\_domain) | The local domain of the kind cluster. | `string` | `"localdev"` | no |

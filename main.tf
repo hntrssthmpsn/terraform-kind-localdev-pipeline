@@ -26,16 +26,16 @@ resource "kind_cluster" "default" {
         ingress-ready = "true"
       }
 
-      # http port mappings for ingress-nginx
+      # http port mappings 
       extra_port_mappings {
-        container_port = 80
-        host_port      = var.ingress_nginx_http_host_port
+        container_port = var.ingress_http_node_port
+        host_port      = var.ingress_http_host_port
       }
 
-      # https port mappings for ingress-nginx
+      # https port mappings 
       extra_port_mappings {
-        container_port = 443
-        host_port      = var.ingress_nginx_https_host_port
+        container_port = var.ingress_https_node_port
+        host_port      = var.ingress_https_host_port
       }
 
       # Mount local directory for persistent storage

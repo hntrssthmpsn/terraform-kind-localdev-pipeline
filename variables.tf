@@ -1,6 +1,3 @@
-# variables.tf
-
-
 #############################
 # Kind Cluster Configuration 
 #############################
@@ -161,9 +158,31 @@ variable "gitea_namespace" {
   default     = "gitea"
 }
 
+######################
+# Gloo Configuration
+######################
+
+variable "gloo_enabled" {
+  type        = bool
+  description = "Deploy gloo to the kind cluster?"
+  default     = false
+}
+
+variable "gloo_helm_chart_version" {
+  type        = string
+  description = "The version of the gloo helm chart to use for gloo installation."
+  default     = "1.15.18"
+}
+
 ##############################
 # Ingress Nginx Configuration
 ##############################
+
+variable "ingress_nginx_enabled" {
+  type        = bool
+  description = "Deploy ingress-nginx to the kind cluster?"
+  default     = true
+}
 
 variable "ingress_nginx_helm_version" {
   type        = string
@@ -177,17 +196,30 @@ variable "ingress_nginx_namespace" {
   default     = "ingress-nginx"
 }
 
-variable "ingress_nginx_http_host_port" {
+variable "ingress_http_host_port" {
   type        = number
   description = "The host port number to use for http ingress to services exposed via ingress-nginx"
   default     = "9080"
 }
 
-variable "ingress_nginx_https_host_port" {
+variable "ingress_https_host_port" {
   type        = number
   description = "The host port number to use for https ingress to services exposed via ingress-nginx"
   default     = "9443"
 }
+
+variable "ingress_http_node_port" {
+  type        = number
+  description = "The node port number to use for http ingress to exposed services"
+  default     = "80"
+}
+
+variable "ingress_https_node_port" {
+  type        = number
+  description = "The host port number to use for https ingress to exposed services"
+  default     = "443"
+}
+
 
 ###############################
 # Sealed Secrets Configuration
