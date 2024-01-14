@@ -34,7 +34,7 @@ EOF
 }
 
 resource "helm_release" "gloo" {
-  count    = var.gloo_enabled ? 1 : 0
+  count = var.gloo_enabled ? 1 : 0
   name  = "gloo"
 
   repository       = "https://storage.googleapis.com/solo-public-helm"

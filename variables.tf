@@ -163,15 +163,15 @@ variable "gitea_namespace" {
 ######################
 
 variable "gloo_enabled" {
-  type = bool
+  type        = bool
   description = "Deploy gloo to the kind cluster?"
-  default = false
+  default     = false
 }
 
 variable "gloo_helm_chart_version" {
-  type = string
+  type        = string
   description = "The version of the gloo helm chart to use for gloo installation."
-  default = "1.15.18"
+  default     = "1.15.18"
 }
 
 ##############################
@@ -179,9 +179,9 @@ variable "gloo_helm_chart_version" {
 ##############################
 
 variable "ingress_nginx_enabled" {
-  type = bool
+  type        = bool
   description = "Deploy ingress-nginx to the kind cluster?"
-  default = false
+  default     = false
 }
 
 variable "ingress_nginx_helm_version" {
@@ -214,7 +214,7 @@ variable "ingress_http_node_port" {
   default     = "80"
 }
 
-variable "ingress_https_node_port" { 
+variable "ingress_https_node_port" {
   type        = number
   description = "The host port number to use for https ingress to exposed services"
   default     = "443"
