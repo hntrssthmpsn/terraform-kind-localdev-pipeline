@@ -30,6 +30,36 @@ variable "kind_cluster_persistence_path" {
   default     = ""
 }
 
+variable "kind_cluster_docker_config_path" {
+  type        = string
+  description = "Local path for temporary file used to configure docker for local registry on nodes."
+  default     = ""
+}
+
+variable "ingress_http_host_port" {
+  type        = number
+  description = "The host port number to use for http ingress to services exposed via ingress-nginx"
+  default     = "9080"
+}
+
+variable "ingress_https_host_port" {
+  type        = number
+  description = "The host port number to use for https ingress to services exposed via ingress-nginx"
+  default     = "9443"
+}
+
+variable "ingress_http_node_port" {
+  type        = number
+  description = "The node port number to use for http ingress to exposed services"
+  default     = "80"
+}
+
+variable "ingress_https_node_port" {
+  type        = number
+  description = "The host port number to use for https ingress to exposed services"
+  default     = "443"
+}
+
 #######################
 # ArgoCD Configuration
 #######################
@@ -194,30 +224,6 @@ variable "ingress_nginx_namespace" {
   type        = string
   description = "The ingress-nginx namespace."
   default     = "ingress-nginx"
-}
-
-variable "ingress_http_host_port" {
-  type        = number
-  description = "The host port number to use for http ingress to services exposed via ingress-nginx"
-  default     = "9080"
-}
-
-variable "ingress_https_host_port" {
-  type        = number
-  description = "The host port number to use for https ingress to services exposed via ingress-nginx"
-  default     = "9443"
-}
-
-variable "ingress_http_node_port" {
-  type        = number
-  description = "The node port number to use for http ingress to exposed services"
-  default     = "80"
-}
-
-variable "ingress_https_node_port" {
-  type        = number
-  description = "The host port number to use for https ingress to exposed services"
-  default     = "443"
 }
 
 
