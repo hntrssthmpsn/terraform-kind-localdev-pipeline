@@ -2,6 +2,7 @@ resource "kind_cluster" "default" {
   name            = var.kind_cluster_name
   kubeconfig_path = pathexpand("${var.kind_cluster_config_path}")
   wait_for_ready  = true
+  depends_on      = [local_file.hosts_toml]
 
   kind_config {
     kind        = "Cluster"
@@ -9,14 +10,19 @@ resource "kind_cluster" "default" {
 
     containerd_config_patches = [
       <<-TOML
-        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."${local.docker_host_endpoint}"]
-            endpoint = ["${local.docker_cluster_endpoint}"]
+        [plugins."io.containerd.grpc.v1.cri".registry]
+            config_path = "/etc/containerd/certs.d"
         TOML
     ]
 
     # control-plane node
     node {
       role = "control-plane"
+      # Mount generated config for docker
+      extra_mounts {
+        host_path      = local.kind_docker_config_path
+        container_path = "/etc/containerd/certs.d"
+      }
     }
 
     # worker node with labels for ingress-nginx
@@ -43,7 +49,18 @@ resource "kind_cluster" "default" {
         host_path      = local.kind_persistence_path
         container_path = "/var/local-path-provisioner"
       }
+      # Mount generated config for docker
+      extra_mounts {
+        host_path      = local.kind_docker_config_path
+        container_path = "/etc/containerd/certs.d"
+      }
     }
   }
 }
 
+resource "local_file" "hosts_toml" {
+  content  = <<-EOT
+    [host."http://${local.docker_cluster_endpoint}"]
+  EOT
+  filename = "${local.kind_docker_config_path}/${local.docker_host_endpoint}/hosts.toml"
+}

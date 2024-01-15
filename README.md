@@ -42,6 +42,7 @@ See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-loca
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.11.0 |
 | <a name="provider_kind"></a> [kind](#provider\_kind) | 0.2.1 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.23.0 |
+| <a name="provider_local"></a> [local](#provider\_local) | n/a |
 | <a name="provider_template"></a> [template](#provider\_template) | 2.2.0 |
 | <a name="provider_tls"></a> [tls](#provider\_tls) | 4.0.4 |
 
@@ -66,6 +67,7 @@ See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-loca
 | [kind_cluster.default](https://registry.terraform.io/providers/tehcyx/kind/0.2.1/docs/resources/cluster) | resource |
 | [kubernetes_namespace.cert_manager_namespace](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 | [kubernetes_secret.ca_issuer_secret](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret) | resource |
+| [local_file.hosts_toml](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [tls_private_key.cert_manager_private_key](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
 | [tls_self_signed_cert.cert_manager_ca_cert](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/self_signed_cert) | resource |
 | [template_file.argocd_values](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
@@ -102,10 +104,11 @@ See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-loca
 | <a name="input_ingress_http_node_port"></a> [ingress\_http\_node\_port](#input\_ingress\_http\_node\_port) | The node port number to use for http ingress to exposed services | `number` | `"80"` | no |
 | <a name="input_ingress_https_host_port"></a> [ingress\_https\_host\_port](#input\_ingress\_https\_host\_port) | The host port number to use for https ingress to services exposed via ingress-nginx | `number` | `"9443"` | no |
 | <a name="input_ingress_https_node_port"></a> [ingress\_https\_node\_port](#input\_ingress\_https\_node\_port) | The host port number to use for https ingress to exposed services | `number` | `"443"` | no |
-| <a name="input_ingress_nginx_enabled"></a> [ingress\_nginx\_enabled](#input\_ingress\_nginx\_enabled) | Deploy ingress-nginx to the kind cluster? | `bool` | `false` | no |
+| <a name="input_ingress_nginx_enabled"></a> [ingress\_nginx\_enabled](#input\_ingress\_nginx\_enabled) | Deploy ingress-nginx to the kind cluster? | `bool` | `true` | no |
 | <a name="input_ingress_nginx_helm_version"></a> [ingress\_nginx\_helm\_version](#input\_ingress\_nginx\_helm\_version) | The ingress-nginx helm chart version. | `string` | `""` | no |
 | <a name="input_ingress_nginx_namespace"></a> [ingress\_nginx\_namespace](#input\_ingress\_nginx\_namespace) | The ingress-nginx namespace. | `string` | `"ingress-nginx"` | no |
 | <a name="input_kind_cluster_config_path"></a> [kind\_cluster\_config\_path](#input\_kind\_cluster\_config\_path) | The file to which the cluster's kubeconfig will be saved. | `string` | `"~/.kube/config"` | no |
+| <a name="input_kind_cluster_docker_config_path"></a> [kind\_cluster\_docker\_config\_path](#input\_kind\_cluster\_docker\_config\_path) | Local path for temporary file used to configure docker for local registry on nodes. | `string` | `""` | no |
 | <a name="input_kind_cluster_local_domain"></a> [kind\_cluster\_local\_domain](#input\_kind\_cluster\_local\_domain) | The local domain of the kind cluster. | `string` | `"localdev"` | no |
 | <a name="input_kind_cluster_name"></a> [kind\_cluster\_name](#input\_kind\_cluster\_name) | The name of the kind cluster. Supports lower case letters and hyphens. | `string` | `""` | no |
 | <a name="input_kind_cluster_persistence_path"></a> [kind\_cluster\_persistence\_path](#input\_kind\_cluster\_persistence\_path) | The path to use for local persistence. Mounted to kind worker nodes. | `string` | `""` | no |
