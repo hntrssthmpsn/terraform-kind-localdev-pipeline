@@ -24,11 +24,11 @@ You can install the terraform binary to run this module by following the [instal
 
 ### Additional recommended tools
 
-In addition to the basic requirements listed above, it's useful to have certain functionality expected in a remote deployment environment set up locally. Additionally, some of the optional components that can be deployed with this module, like sealed-secrets, require configuration of a client. Initial setup of optional or component-specific external tools is described in the [initial setup document](https://github.com/beautiful-localdev/terraform-kind-localdev-pipeline/blob/main/docs/initial_setup.md).
+In addition to the basic requirements listed above, it's useful to have certain functionality expected in a remote deployment environment set up locally. Additionally, some of the optional components that can be deployed with this module, like sealed-secrets, require configuration of a client. Initial setup of optional or component-specific external tools is described in the [initial setup document](https://github.com/hntrssthmpsn/terraform-kind-localdev-pipeline/blob/main/docs/initial_setup.md).
 
 ## Usage
 
-See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-localdev-pipeline/tree/main/examples/minimal) for basic usage, or [examples/maximal](https://github.com/beautiful-localdev/terraform-kind-localdev-pipeline/tree/main/examples/maximal) for a walkthrough that touches on every component the module supplies.
+See [examples/minimal](https://github.com/hntrssthmpsn/terraform-kind-localdev-pipeline/tree/main/examples/minimal) for basic usage, or [examples/maximal](https://github.com/hntrssthmpsn/terraform-kind-localdev-pipeline/tree/main/examples/maximal) for a walkthrough that touches on every component the module supplies.
 
 ## Terraform Documentation
 
