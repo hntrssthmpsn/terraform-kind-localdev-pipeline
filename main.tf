@@ -54,6 +54,14 @@ resource "kind_cluster" "default" {
         host_path      = local.kind_docker_config_path
         container_path = "/etc/containerd/certs.d"
       }
+      # Mount any additional user-specified mounts
+      dynamic "extra_mounts" {
+        for_each = var.kind_cluster_worker_extra_mounts
+        content {
+          host_path      = extra_mounts.value["host_path"]
+          container_path = extra_mounts.value["container_path"]
+        }
+      }
     }
   }
 }

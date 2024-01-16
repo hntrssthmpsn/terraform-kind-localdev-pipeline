@@ -24,11 +24,11 @@ You can install the terraform binary to run this module by following the [instal
 
 ### Additional recommended tools
 
-In addition to the basic requirements listed above, it's useful to have certain functionality expected in a remote deployment environment set up locally. Additionally, some of the optional components that can be deployed with this module, like sealed-secrets, require configuration of a client. Initial setup of optional or component-specific external tools is described in the [initial setup document](https://github.com/beautiful-localdev/terraform-kind-localdev-pipeline/blob/main/docs/initial_setup.md).
+In addition to the basic requirements listed above, it's useful to have certain functionality expected in a remote deployment environment set up locally. Additionally, some of the optional components that can be deployed with this module, like sealed-secrets, require configuration of a client. Initial setup of optional or component-specific external tools is described in the [initial setup document](https://github.com/hntrssthmpsn/terraform-kind-localdev-pipeline/blob/main/docs/initial_setup.md).
 
 ## Usage
 
-See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-localdev-pipeline/tree/main/examples/minimal) for basic usage, or [examples/maximal](https://github.com/beautiful-localdev/terraform-kind-localdev-pipeline/tree/main/examples/maximal) for a walkthrough that touches on every component the module supplies.
+See [examples/minimal](https://github.com/hntrssthmpsn/terraform-kind-localdev-pipeline/tree/main/examples/minimal) for basic usage, or [examples/maximal](https://github.com/hntrssthmpsn/terraform-kind-localdev-pipeline/tree/main/examples/maximal) for a walkthrough that touches on every component the module supplies.
 
 ## Terraform Documentation
 
@@ -112,6 +112,7 @@ See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-loca
 | <a name="input_kind_cluster_local_domain"></a> [kind\_cluster\_local\_domain](#input\_kind\_cluster\_local\_domain) | The local domain of the kind cluster. | `string` | `"localdev"` | no |
 | <a name="input_kind_cluster_name"></a> [kind\_cluster\_name](#input\_kind\_cluster\_name) | The name of the kind cluster. Supports lower case letters and hyphens. | `string` | `""` | no |
 | <a name="input_kind_cluster_persistence_path"></a> [kind\_cluster\_persistence\_path](#input\_kind\_cluster\_persistence\_path) | The path to use for local persistence. Mounted to kind worker nodes. | `string` | `""` | no |
+| <a name="input_kind_cluster_worker_extra_mounts"></a> [kind\_cluster\_worker\_extra\_mounts](#input\_kind\_cluster\_worker\_extra\_mounts) | Additional local paths to mount to the worker node | `list(any)` | `[]` | no |
 | <a name="input_sealed_secrets_enabled"></a> [sealed\_secrets\_enabled](#input\_sealed\_secrets\_enabled) | Deploy sealed secrets to the kind cluster? | `string` | `false` | no |
 | <a name="input_sealed_secrets_helm_version"></a> [sealed\_secrets\_helm\_version](#input\_sealed\_secrets\_helm\_version) | The sealed secrets helm chart version | `string` | `""` | no |
 | <a name="input_sealed_secrets_namespace"></a> [sealed\_secrets\_namespace](#input\_sealed\_secrets\_namespace) | The sealed secrets namespace. | `string` | `"kube-system"` | no |
