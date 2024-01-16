@@ -10,6 +10,12 @@ module "pipeline" {
     cert        = var.ca_cert
     private_key = var.ca_key
   }
+  kind_cluster_worker_extra_mounts = [
+    { 
+      host_path = "${path.root}/.pipeline/test"
+      container_path = "/app_data"
+    },
+  ]
 }
 
 resource "local_file" "pipeline_env_file" {

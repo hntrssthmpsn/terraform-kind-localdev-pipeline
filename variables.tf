@@ -36,6 +36,12 @@ variable "kind_cluster_docker_config_path" {
   default     = ""
 }
 
+variable "kind_cluster_worker_extra_mounts" {
+  type        = list
+  description = "Additional local paths to mount to the worker node"
+  default     = []
+}
+
 variable "ingress_http_host_port" {
   type        = number
   description = "The host port number to use for http ingress to services exposed via ingress-nginx"
