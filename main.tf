@@ -58,7 +58,7 @@ resource "kind_cluster" "default" {
       dynamic "extra_mounts" {
         for_each = var.kind_cluster_worker_extra_mounts
         content {
-          host_path = extra_mounts.value["host_path"]
+          host_path      = extra_mounts.value["host_path"]
           container_path = extra_mounts.value["container_path"]
         }
       }

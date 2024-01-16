@@ -37,7 +37,7 @@ variable "kind_cluster_docker_config_path" {
 }
 
 variable "kind_cluster_worker_extra_mounts" {
-  type        = list
+  type        = list(any)
   description = "Additional local paths to mount to the worker node"
   default     = []
 }

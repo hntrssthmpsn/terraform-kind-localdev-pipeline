@@ -112,6 +112,7 @@ See [examples/minimal](https://github.com/beautiful-localdev/terraform-kind-loca
 | <a name="input_kind_cluster_local_domain"></a> [kind\_cluster\_local\_domain](#input\_kind\_cluster\_local\_domain) | The local domain of the kind cluster. | `string` | `"localdev"` | no |
 | <a name="input_kind_cluster_name"></a> [kind\_cluster\_name](#input\_kind\_cluster\_name) | The name of the kind cluster. Supports lower case letters and hyphens. | `string` | `""` | no |
 | <a name="input_kind_cluster_persistence_path"></a> [kind\_cluster\_persistence\_path](#input\_kind\_cluster\_persistence\_path) | The path to use for local persistence. Mounted to kind worker nodes. | `string` | `""` | no |
+| <a name="input_kind_cluster_worker_extra_mounts"></a> [kind\_cluster\_worker\_extra\_mounts](#input\_kind\_cluster\_worker\_extra\_mounts) | Additional local paths to mount to the worker node | `list(any)` | `[]` | no |
 | <a name="input_sealed_secrets_enabled"></a> [sealed\_secrets\_enabled](#input\_sealed\_secrets\_enabled) | Deploy sealed secrets to the kind cluster? | `string` | `false` | no |
 | <a name="input_sealed_secrets_helm_version"></a> [sealed\_secrets\_helm\_version](#input\_sealed\_secrets\_helm\_version) | The sealed secrets helm chart version | `string` | `""` | no |
 | <a name="input_sealed_secrets_namespace"></a> [sealed\_secrets\_namespace](#input\_sealed\_secrets\_namespace) | The sealed secrets namespace. | `string` | `"kube-system"` | no |
