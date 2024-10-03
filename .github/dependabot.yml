@@ -1,0 +1,12 @@
+version: 2
+
+updates:
+# Terraform 
+  - package-ecosystem: "terraform" # main module
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "terraform" # minimal example
+    directory: "/examples/minimal"
+    schedule:
+      interval: "weekly"
