@@ -4,6 +4,7 @@ updates:
 # Terraform 
   - package-ecosystem: "terraform"
     directories:
-      - "*"
+      - "/"
+      - "/examples/*"
     schedule:
       interval: "weekly"
